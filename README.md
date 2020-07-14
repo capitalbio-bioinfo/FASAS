@@ -76,6 +76,10 @@ Considering the speed and accuracy of calculations, the MegaBLAST program may be
 ##Tools
 Some commonly used tool-type scripts are placed in the "tools" directory. These scripts can help you analyze your data.
 
+##IDBA_UD
+How to compile IDBA_ud supported by long sequence?  
+After downloading the IDBA source code, modify line 102 of the ‘./src/sequence/short_sequence.h’ file and change the number before the semicolon at the end of the line to 152. Then compile the program normally
+
 ##License
 ![GPL v3 picture](https://www.gnu.org/graphics/gplv3-with-text-136x68.png)  
 >    FASAS: Full-Length Amplicon Sequencing Analysis System  
