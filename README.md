@@ -68,13 +68,11 @@ currently, we offer two assembly software support, [cap3](http://doua.prabi.fr/s
 2. Poor assembly effect, not suitable for Full-Length 16s data
 
 ## Preliminary Taxonomy Algorith
-###DATABASE
-The 16s database mainly includes [NCBI Blast](ftp://ftp.ncbi.nlm.nih.gov/blast/db/), [Silva](https://www.arb-silva.de/), [Greengene](http://greengenes.secondgenome.com/), [RDP](http://rdp.cme.msu.edu/) and [EzBioCloud](https://www.ezbiocloud.net).
-###Algorith
-Considering the speed and accuracy of calculations, the MegaBLAST program may be the best choice for species classification.
+**DATABASE**, The 16s database mainly includes [NCBI Blast](ftp://ftp.ncbi.nlm.nih.gov/blast/db/), [Silva](https://www.arb-silva.de/), [Greengene](http://greengenes.secondgenome.com/), [RDP](http://rdp.cme.msu.edu/) and [EzBioCloud](https://www.ezbiocloud.net).  
+**Algorith**, Considering the speed and accuracy of calculations, the MegaBLAST program may be the best choice for species classification.  
 
 ##Tools
-Some commonly used tool-type scripts are placed in the "tools" directory. These scripts can help you analyze your data.
+Some commonly used tool-type scripts are placed in the "tools" directory. These scripts can help you analyze your data.  
 
 ##IDBA_UD
 How to compile IDBA_ud supported by long sequence?  
