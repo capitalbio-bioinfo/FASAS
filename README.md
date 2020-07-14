@@ -69,17 +69,21 @@ currently, we offer two assembly software support, [cap3](http://doua.prabi.fr/s
 
 ## Preliminary Taxonomy Algorith
 **DATABASE**, The 16s database mainly includes [NCBI Blast](ftp://ftp.ncbi.nlm.nih.gov/blast/db/), [Silva](https://www.arb-silva.de/), [Greengene](http://greengenes.secondgenome.com/), [RDP](http://rdp.cme.msu.edu/) and [EzBioCloud](https://www.ezbiocloud.net).  
-**Algorith**, Considering the speed and accuracy of calculations, the MegaBLAST program may be the best choice for species classification.  
+**Algorith**, Considering the speed and accuracy of calculations, the MegaBLAST program may be the best choice for species classification.
 
-##Tools
+## Tools
+
 Some commonly used tool-type scripts are placed in the "tools" directory. These scripts can help you analyze your data.  
 
-##IDBA_UD
+## IDBA_UD
+
 How to compile IDBA_ud supported by long sequence?  
 After downloading the IDBA source code, modify line 102 of the ‘./src/sequence/short_sequence.h’ file and change the number before the semicolon at the end of the line to 152. Then compile the program normally
 
-##License
+## License
+
 ![GPL v3 picture](https://www.gnu.org/graphics/gplv3-with-text-136x68.png)  
+
 >    FASAS: Full-Length Amplicon Sequencing Analysis System  
 >    Copyright (C) 2019 CapitalBio Corporation
 >
@@ -96,6 +100,7 @@ After downloading the IDBA source code, modify line 102 of the ‘./src/sequence
 >    You should have received a copy of the GNU General Public License  
 >    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-##Copy Right
+## Copy Right
+
 > CapitalBio Corporation Beijing  
 > Biochip National Enginerring Research Center of Beijing
