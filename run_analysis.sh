@@ -318,7 +318,7 @@ echoinfo "lead-tag library statistcs are written to ${PReadLog}"
 echoinfo "linked-tag library statistcs are written to ${PLinkedLog}"
 
 #depend log file
-PMatchReadRatio=$(head -n1 Read-tag_library.log|perl -ne 'if($_ =~ /(\d+\.\d+)%\./){print $1}')
+PMatchReadRatio=$(head -n1 read-tag_library.log|perl -ne 'if($_ =~ /(\d+\.\d+)%\./){print $1}')
 PMatchLinkedRatio=$(head -n1 linked-tag_library.log|perl -ne 'if($_ =~ /(\d+\.\d+)%\./){print $1}')
 PTempNum=$(echo ${PMatchLinkedRatio} | perl -ne '$_ < 0.25 ? print 1 : print 0')
 test ${PTempNum} == 1 && echowarn "Too many linked-tag library sequences do not match. Ratio: ${PMatchLinkedRatio}."
@@ -494,10 +494,10 @@ mkdir step7-determine_sequence
 cd step7-determine_sequence
 ln -s ../step4-stat_linked-tag_library/left_UMItable.tsv .
 ln -s ../step4-stat_linked-tag_library/right_UMItable.tsv .
-ln -s ../step5-trim_link_library/read-tag_left_R1_three.fastq.gz .
-ln -s ../step5-trim_link_library/read-tag_left_R2_three.fastq.gz .
-ln -s ../step5-trim_link_library/read-tag_right_R1_three.fastq.gz .
-ln -s ../step5-trim_link_library/read-tag_right_R2_three.fastq.gz .
+ln -s ../step5-trim_read-tag_library/read-tag_left_R1_three.fastq.gz .
+ln -s ../step5-trim_read-tag_library/read-tag_left_R2_three.fastq.gz .
+ln -s ../step5-trim_read-tag_library/read-tag_right_R1_three.fastq.gz .
+ln -s ../step5-trim_read-tag_library/read-tag_right_R2_three.fastq.gz .
 ln -s ../step6-stat_read-tag_library/left_UMI2seqname.tsv .
 ln -s ../step6-stat_read-tag_library/right_UMI2seqname.tsv .
 {
@@ -521,10 +521,10 @@ fi
 cd ../
 mkdir check_read-tag_coverage
 cd check_read-tag_coverage
-ln -s ../step5-trim_link_library/read-tag_left_R1_three.fastq.gz .
-ln -s ../step5-trim_link_library/read-tag_left_R2_three.fastq.gz .
-ln -s ../step5-trim_link_library/read-tag_right_R1_three.fastq.gz .
-ln -s ../step5-trim_link_library/read-tag_right_R2_three.fastq.gz .
+ln -s ../step5-trim_read-tag_library/read-tag_left_R1_three.fastq.gz .
+ln -s ../step5-trim_read-tag_library/read-tag_left_R2_three.fastq.gz .
+ln -s ../step5-trim_read-tag_library/read-tag_right_R1_three.fastq.gz .
+ln -s ../step5-trim_read-tag_library/read-tag_right_R2_three.fastq.gz .
 #sampling
 {
     perl ${FASASHome}/perl/07.sampling_reads.pl --input_r1 read-tag_left_R1_three.fastq.gz \
@@ -605,7 +605,7 @@ perl ${FASASHome}/perl/09.megablast_annotation.pl --work_dir ./ \
     --input_fasta ${QStep9Input} --ref_fa ${QParameter[8]} \
     --ref_tax ${QParameter[9]} --blast_db ${QParameter[8]} \
     --contig_length ${QParameter[12]} --blast_evalue 1e-20
-perl ${FASASHome}/perl/09.megablast_annotation.pl --input_file ./primer_taxonomy.tsv  --output_dir ./every_rank --sample_name ${QParameter[0]}
+perl ${FASASHome}/perl/09.stat.tax.pl --input_file ./primer_taxonomy.tsv  --output_dir ./every_rank --sample_name ${QParameter[0]}
 echoinfo "=================================================="
 echoinfo "The program is successfully completed, END."
 ################################################################################################################

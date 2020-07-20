@@ -7,7 +7,7 @@ else
     exit
 fi
 
-if [ $(which makeblastdb 2>/dev/null)] ; then
+if [ $(which makeblastdb 2>/dev/null) ] ; then
     echo "Found makeblastdb command."
 else
     echo "makeblastdb command not found!"
@@ -15,7 +15,7 @@ else
     exit
 fi
 
-if [ $(which makembindex 2>/dev/null)] ; then
+if [ $(which makembindex 2>/dev/null) ] ; then
     echo "Found makembindex command."
 else
     echo "makembindex command not found!"

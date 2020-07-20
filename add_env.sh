@@ -74,7 +74,7 @@ then
         echoinfo "Prepare to append environment variable to ~/.bashrc"
         echo -en "\n##16S-FASAS environment variable\n" >> ${BashrcPATH}
         echo -en "export FASASHome=${MYPath}\n" >> ${BashrcPATH}
-        echo -en "export PERL5LIB=${PERL5LIBPATH}:\$PERL5LIB\n" >> ${BashrcPATH}
+        echo -en "export PERL5LIB=${FASASPERL5LIB}:\$PERL5LIB\n" >> ${BashrcPATH}
     fi
 else
     echoinfo "~/.bashrc not found or size of ~/.bashrc eq 0."
@@ -91,7 +91,7 @@ else
     then
         echo -en "\n##16S-FASAS environment variable\n" >> ${BashrcPATH}
         echo -en "export FASASHome=${MYPath}\n" >> ${BashrcPATH}
-        echo -en "export PERL5LIB=${PERL5LIBPATH}:\$PERL5LIB\n" >> ${BashrcPATH}
+        echo -en "export PERL5LIB=${FASASPERL5LIB}:\$PERL5LIB\n" >> ${BashrcPATH}
     else
         echowarn "~/.bashrc no create."
         echowarn "Exit."
