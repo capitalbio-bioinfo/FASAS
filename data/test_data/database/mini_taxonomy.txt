@@ -1,0 +1,22 @@
+143451	Bacteria;Firmicutes;Clostridia;Clostridiales;Ruminococcaceae;Oscillibacter;PAC001188_s
+138525	Bacteria;Firmicutes;Clostridia;Clostridiales;Lachnospiraceae;KE159600_g;KE159600_s
+143389	Bacteria;Firmicutes;Clostridia;Clostridiales;Lachnospiraceae;PAC001124_g;PAC001124_s
+133802	Bacteria;Bacteroidetes;Bacteroidia;Bacteroidales;Rikenellaceae;Alistipes;JQ085082_s
+144628	Bacteria;Firmicutes;Clostridia;Clostridiales;Lachnospiraceae;PAC002375_g;PAC002375_s
+94549	Bacteria;Bacteroidetes;Bacteroidia;Bacteroidales;Bacteroidaceae;Bacteroides;Bacteroides acidifaciens
+117475	Bacteria;Chloroflexi;Anaerolineae;Anaerolinaeles;DQ811879_f;DQ811879_g;GQ143781_s
+143781	Bacteria;Firmicutes;Clostridia;Clostridiales;Lachnospiraceae;PAC001524_g;PAC001524_s
+138525	Bacteria;Firmicutes;Clostridia;Clostridiales;Lachnospiraceae;KE159600_g;KE159600_s
+143213	Bacteria;Firmicutes;Clostridia;Clostridiales;Lachnospiraceae;Frisingicoccus;PAC000688_s
+143556	Bacteria;Firmicutes;Clostridia;Clostridiales;Lachnospiraceae;Clostridium_g21;PAC001294_s
+144259	Bacteria;Firmicutes;Clostridia;Clostridiales;Lachnospiraceae;PAC001225_g;PAC002005_s
+144653	Bacteria;Bacteroidetes;Bacteroidia;Bacteroidales;Muribaculaceae;PAC002400_g;PAC002400_s
+143720	Bacteria;Firmicutes;Clostridia;Clostridiales;Lachnospiraceae;Acetatifactor;PAC001463_s
+144628	Bacteria;Firmicutes;Clostridia;Clostridiales;Lachnospiraceae;PAC002375_g;PAC002375_s
+144628	Bacteria;Firmicutes;Clostridia;Clostridiales;Lachnospiraceae;PAC002375_g;PAC002375_s
+143403	Bacteria;Bacteroidetes;Bacteroidia;Bacteroidales;Muribaculaceae;PAC000198_g;PAC001139_s
+143530	Bacteria;Cyanobacteria;Vampirovibrio_c;FR888536_o;FR888536_f;FR888536_g;PAC001268_s
+143429	Bacteria;Firmicutes;Clostridia;Clostridiales;Lachnospiraceae;PAC001165_g;PAC001165_s
+144731	Bacteria;Bacteroidetes;Bacteroidia;Bacteroidales;Prevotellaceae;Alloprevotella;PAC002479_s
+143451	Bacteria;Firmicutes;Clostridia;Clostridiales;Ruminococcaceae;Oscillibacter;PAC001188_s
+143451	Bacteria;Firmicutes;Clostridia;Clostridiales;Ruminococcaceae;Oscillibacter;PAC001188_s
