@@ -6,25 +6,29 @@ FASAS is a pipeline software for 16s full-length amplicon sequencing data analys
 2. An environment variable FASASHome is defined in FASAS. Run '. add_env.sh' or 'source add.env.sh' to write the FASASHome variable to ~/.bashrc and export it in the current SHELL.
 Run:
 ```bash
-    cd ${FASAS_HOME_FOLDER}
-    . ./add_env.sh
+    . add_env.sh
 ```
 3. FASAS requires some Perl modules and a conda environment, the installation script has been placed in the 'dep' directory. The installation process is very simple, just execute 'bash dep/create_conda_env.sh' and make a selection as prompted. The script will output 'done' at the end when the script runs successfully.
 Run:
 ```bash
-    cd ${FASAS_HOME_FOLDER}
+    cd ${FASASHome}
     bash dep/create_conda_env.sh
 ```
 
 ## Quick Start
 Usage:  
-```
+```bash
     bash run_analysis.sh -f|--config_file [ConfigFile] >& [logfile]
 ```
 Run test:  
-```
+```bash
+    #build test database
+    bash ${FASASHome}/data/test_data/database/build_database.sh ${FASASHome}/data/test_data/database/mini_fulllength.fasta
+    #create config file
     cd [work folder]
-    bash run_analysis.sh -f ./data/ConfigFile/test.ConfigFile >& test.log
+    bash ${FASASHome}/data/test_data/create_test_config.sh > ./test.configfile
+    #run test analysis
+    bash ${FASASHome}/run_analysis.sh -f ./test.configfile >& test.log
 ```
 
 ## Parameter:
@@ -44,20 +48,16 @@ Run test:
 
 ## Library Structure
 Linker-Tag Library:  
->
->     R1:  CommonSeq---------UMISeq---------CommonSeq------------------UMISeq---------CommonSeq
+>R1:  CommonSeq---------UMISeq---------CommonSeq------------------UMISeq---------CommonSeq
 >     R2:              ------UMISeq---------CommonSeq------------------UMISeq---------CommonSeq---------
->
 
 R1 of Linker-tag Library corresponds to UMILibraryR1 of **LibraryInfo** file  
 R2 of Linker-tag Library corresponds to UMILibraryR2 of **LibraryInfo** file
 
 Read-Tag Library:  
->
->     R1:  16SSeq----------------------------------------------------------------------------------------
+>R1:  16SSeq----------------------------------------------------------------------------------------
 >                                     IN MOST CASES: NO OVERLAP
 >     R2:  CommonSeq------UMISeq------CommonSeq------16SSeq----------------------------------------------
->
 
 R1 of Read-tag Library corresponds to AssembleLibraryLeft of **LibraryInfo** file  
 R2 of Read-tag Library corresponds to AssembleLibraryRight of **LibraryInfo** file
@@ -69,16 +69,16 @@ currently, we offer two assembly software support, [cap3](http://doua.prabi.fr/s
 
 ## Preliminary Taxonomy Algorith
 **DATABASE**, The 16s database mainly includes [NCBI Blast](ftp://ftp.ncbi.nlm.nih.gov/blast/db/), [Silva](https://www.arb-silva.de/), [Greengene](http://greengenes.secondgenome.com/), [RDP](http://rdp.cme.msu.edu/) and [EzBioCloud](https://www.ezbiocloud.net).  
-**Algorith**, Considering the speed and accuracy of calculations, the MegaBLAST program may be the best choice for species classification.
+**Algorith**, Considering the speed and accuracy of calculations, the **MegaBLAST** program may be the best choice for species classification.
+
+## IDBA_ud Dependent
+
+How to compile IDBA_ud supported by long sequence?  
+After downloading the IDBA source code, modify line 102 of the ***‘./src/sequence/short_sequence.h’*** file and change the number before the semicolon at the end of the line to 152. Then compile the program normally
 
 ## Tools
 
 Some commonly used tool-type scripts are placed in the "tools" directory. These scripts can help you analyze your data.  
-
-## IDBA_UD
-
-How to compile IDBA_ud supported by long sequence?  
-After downloading the IDBA source code, modify line 102 of the ‘./src/sequence/short_sequence.h’ file and change the number before the semicolon at the end of the line to 152. Then compile the program normally
 
 ## License
 
