@@ -105,7 +105,7 @@ Options:
 
 echo_error("SplitLinkedLibrary","$r1_file no exists!") if ! -e $r1_file;
 echo_error("SplitLinkedLibrary","$r2_file no exists!") if ! -e $r2_file;
-echo_error("SplitLinkedLibrary","")
+#echo_error("SplitLinkedLibrary","")
 
 #thread ref sequence
 chomp $umi_library_r1_p;
