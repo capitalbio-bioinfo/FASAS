@@ -312,7 +312,7 @@ PDataReverseFastqName=$(basename ${QParameter[6]})
 }
 wait
 PStep1Work=$(pwd)
-PReadLog=${PStep1Work}'/Read-tag_library.log'
+PReadLog=${PStep1Work}'/read-tag_library.log'
 PLinkedLog=${PStep1Work}'/linked-tag_library.log'
 echoinfo "lead-tag library statistcs are written to ${PReadLog}"
 echoinfo "linked-tag library statistcs are written to ${PLinkedLog}"
@@ -362,7 +362,7 @@ perl ${FASASHome}/bin/xorro_wrapper.pl -i1 linked_R1_clean.fastq -i2 linked_R2_c
 PLinkedCutoff=$((${LinkedLibraryLength}+24))
 #stat sequence length of the linked-tag library
 cat linked_merge.assembled.fastq | perl -ne '$seq=<>;$mid=<>;$qual=<>;chomp $seq;print length $seq,"\n";' > linked_sequence_length.txt
-Rscript ${FASASHome}/r/step3-plotting_linked-tag_length.r linked_sequence_length.txt ${PLinkedCutoff} linked-tag_length_frequency.pdf 2> /dev/null
+Rscript ${FASASHome}/r/step3-plotting_Linked-tag_length.r linked_sequence_length.txt ${PLinkedCutoff} linked-tag_length_frequency.pdf 2> /dev/null
 #delete some sequence that sequence length gt ${PLinkedCutoff}
 perl ${FASASHome}/perl/03.filter_linked-tag_sequence.pl --upper_limit ${PLinkedCutoff} --input_file linked_merge.assembled.fastq --output_file linked_merge.assembled.fasta
 
@@ -410,14 +410,14 @@ cd step5-trim_read-tag_library
 ln -s ../step1-split_library/read-tag_left_R1.fastq.gz .
 ln -s ../step1-split_library/read-tag_left_R2.fastq.gz .
 ln -s ../step1-split_library/read-tag_right_R1.fastq.gz .
-ln -s ../step1-split_library/read-tag_right_R1.fastq.gz .
+ln -s ../step1-split_library/read-tag_right_R2.fastq.gz .
 #max_threads option is 10, actually, 6 is top
 {
     perl ${FASASHome}/perl/05.takeout_UMI.pl -f read-tag_left_R1.fastq.gz -r read-tag_left_R2.fastq.gz \
         -t l --aleftp ${QLibraryInfo[7]} --alefta ${QLibraryInfo[8]} \
         --arightp ${QLibraryInfo[9]} --arighta ${QLibraryInfo[10]} \
         --umi_length ${QLibraryInfo[0]} --max_threads 10 || SendSignal 'step5. script: 05.TakeOut_UMI.pl LEFT' &
-    perl ${FASASHome}/perl/05.takeout_UMI.pl -f read-tag_right_R1.fastq.gz -r read-tag_right_R1.fastq.gz \
+    perl ${FASASHome}/perl/05.takeout_UMI.pl -f read-tag_right_R1.fastq.gz -r read-tag_right_R2.fastq.gz \
         -t r --aleftp ${QLibraryInfo[7]} --alefta ${QLibraryInfo[8]} \
         --arightp ${QLibraryInfo[9]} --arighta ${QLibraryInfo[10]} \
         --umi_length ${QLibraryInfo[0]} --max_threads 10 || SendSignal 'step5. script: 05.TakeOut_UMI.pl RIGHT' &
@@ -472,8 +472,8 @@ cd - > /dev/null
 echoinfo "STEP6 stat_read-tag_library START!"
 mkdir step6-stat_read-tag_library
 cd step6-stat_read-tag_library
-ln -s ../step5-trim_link_library/read-tag_left_R2_three.fastq.gz .
-ln -s ../step5-trim_link_library/read-tag_right_R2_three.fastq.gz .
+ln -s ../step5-trim_read-tag_library/read-tag_left_R2_three.fastq.gz .
+ln -s ../step5-trim_read-tag_library/read-tag_right_R2_three.fastq.gz .
 {
 	perl ${FASASHome}/perl/06.stat_read_library_reads.pl -r read-tag_left_R2_three.fastq.gz -t l \
         --output_number left_UMI2number.tsv \
@@ -492,27 +492,27 @@ cd - > /dev/null
 echoinfo "STEP7 determine_sequence START!"
 mkdir step7-determine_sequence
 cd step7-determine_sequence
-ln -s ../step4-stat_UMI_library/left_UMItable.tsv .
-ln -s ../step4-stat_UMI_library/right_UMItable.tsv .
+ln -s ../step4-stat_linked-tag_library/left_UMItable.tsv .
+ln -s ../step4-stat_linked-tag_library/right_UMItable.tsv .
 ln -s ../step5-trim_link_library/read-tag_left_R1_three.fastq.gz .
 ln -s ../step5-trim_link_library/read-tag_left_R2_three.fastq.gz .
 ln -s ../step5-trim_link_library/read-tag_right_R1_three.fastq.gz .
 ln -s ../step5-trim_link_library/read-tag_right_R2_three.fastq.gz .
-ln -s ../step6-stat_link_library/left_UMI2seqname.tsv .
-ln -s ../step6-stat_link_library/right_UMI2seqname.tsv .
+ln -s ../step6-stat_read-tag_library/left_UMI2seqname.tsv .
+ln -s ../step6-stat_read-tag_library/right_UMI2seqname.tsv .
 {
     perl ${FASASHome}/perl/07.16s_distributor.pl --left_input_umi2name left_UMI2seqname.tsv \
         --right_input_umi2name right_UMI2seqname.tsv \
         --left_input_umitable left_UMItable.tsv --right_input_umitable right_UMItable.tsv \
         --left_input_r1fastq read-tag_left_R1_three.fastq.gz --right_input_r1fastq read-tag_right_R1_three.fastq.gz \
-        --left_input_r2fastq read-tag_left_R2_three.fastq.gz --right_input_r2fastq read-tag_right_R2_three.fastq.gz --filter_read_number 25
+        --left_input_r2fastq read-tag_left_R2_three.fastq.gz --right_input_r2fastq read-tag_right_R2_three.fastq.gz
 } || {
     echoerr "Failed to Split Assemble Library, return value: $?."
     echoinfo "Exit."
     exit 1
 }
 
-PAllSeqSize=$(du -s All_seq_r1.fastq.gz|awk '{print $1}')
+PAllSeqSize=$(du -s all_sequence_R1.fastq.gz|awk '{print $1}')
 if [ ! ${PAllSeqSize} > 40 ]; then
     echoerr "File All_seq_r1.fastq has a size of zero!"
 fi
@@ -559,8 +559,8 @@ cd - > /dev/null
 echoinfo "STEP8 parallel_assembly START!"
 mkdir step8-parallel_assembly
 cd step8-parallel_assembly
-ln -s ../step7-split_link_library/all_sequence_R1.fastq.gz .
-ln -s ../step7-split_link_library/all_sequence_R2.fastq.gz .
+ln -s ../step7-determine_sequence/all_sequence_R1.fastq.gz .
+ln -s ../step7-determine_sequence/all_sequence_R2.fastq.gz .
 
 #BUG:
 #threads options: -m ???
@@ -581,7 +581,7 @@ fi
 perl ${FASASHome}/perl/08.get_contig_length.pl --min_value 300 --max_value 1800 --input_file second_contigs.fa --output_file contig_length.log
 Rscript ${FASASHome}/r/step8-plotting_contig_frequency.r contig_length.log contig_frequency.pdf 2> /dev/null
 
-PContigsNumber=$(wc -l fix_contigs.fa|awk '{print $1}')
+PContigsNumber=$(wc -l second_contigs.fa|awk '{print $1}')
 test ${PContigsNumber} -le 6000 && echowarn "STEP8: The number of Contig is less than 6000!"
 
 echoinfo "=================================================="
@@ -605,7 +605,7 @@ perl ${FASASHome}/perl/09.megablast_annotation.pl --work_dir ./ \
     --input_fasta ${QStep9Input} --ref_fa ${QParameter[8]} \
     --ref_tax ${QParameter[9]} --blast_db ${QParameter[8]} \
     --contig_length ${QParameter[12]} --blast_evalue 1e-20
-perl ${FASASHome}/perl/09.stat_taxonmy.pl --input_file ./primer_taxonomy.tsv  --output_dir ./every_rank --sample_name ${QParameter[0]}
+perl ${FASASHome}/perl/09.megablast_annotation.pl --input_file ./primer_taxonomy.tsv  --output_dir ./every_rank --sample_name ${QParameter[0]}
 echoinfo "=================================================="
 echoinfo "The program is successfully completed, END."
 ################################################################################################################
