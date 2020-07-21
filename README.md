@@ -50,10 +50,10 @@ ContigLength            int        Minmum contig length                      [12
 Run the following codes for test:
 ```bash
     #build test database
-    bash ${FASASHome}/data/test_data/database/build_database.sh ${FASASHome}/data/test_data/database/mini_fulllength.fasta
+    bash ${FASASHome}/data/example_data/database/build_database.sh ${FASASHome}/data/example_data/database/mini_fulllength.fasta
     #create config file
     cd [work folder]
-    bash ${FASASHome}/data/test_data/create_test_config.sh > ./test.configfile
+    bash ${FASASHome}/data/example_data/create_test_config.sh > ./test.configfile
     #run test analysis
     bash ${FASASHome}/run_analysis.sh -f ./test.configfile >& test.log
 ```
