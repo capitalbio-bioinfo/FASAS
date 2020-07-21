@@ -605,7 +605,7 @@ perl ${FASASHome}/perl/09.megablast_annotation.pl --work_dir ./ \
     --input_fasta ${QStep9Input} --ref_fa ${QParameter[8]} \
     --ref_tax ${QParameter[9]} --blast_db ${QParameter[8]} \
     --contig_length ${QParameter[12]} --blast_evalue 1e-20
-perl ${FASASHome}/perl/09.stat.tax.pl --input_file ./primer_taxonomy.tsv  --output_dir ./every_rank --sample_name ${QParameter[0]}
+perl ${FASASHome}/perl/09.stat_tax.pl --input_file ./primer_taxonomy.tsv  --output_dir ./every_rank --sample_name ${QParameter[0]}
 echoinfo "=================================================="
 echoinfo "The program is successfully completed, END."
 ################################################################################################################
