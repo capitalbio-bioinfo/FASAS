@@ -5,24 +5,40 @@
 ![Overall workflow of 16S-FASAS](https://github.com/zhangke-cs/FASAS/blob/master/data/project_png/figure1.jpg)
 
 ## Installtion
-1. An environment variable FASASHome is defined in 16S-FASAS. Run '. add_env.sh' or 'source add.env.sh' to write the FASASHome variable to ~/.bashrc and export it in the current SHELL.
+1. Clone the repository to your local path. 
 Run:
 ```bash
-    cd ${FASAS_HOME_FOLDER}
-    . ./add_env.sh
+    mkdir /PATH/TO/FASASHome/
+    git clone https://github.com/zhangke-cs/FASAS.git /PATH/TO/FASASHome/
 ```
-
-2. 16S-FASAS requires some Perl modules and a conda environment, the installation script has been placed in the 'dep' directory. The installation process is very simple, just execute 'bash dep/create_conda_env.sh' and make a selection as prompted. The script will output 'done' at the end when the script runs successfully.
+2. An environment variable FASASHome is defined in 16S-FASAS. Run 'bash add_env.sh' or 'source add.env.sh' to write the FASASHome variable to ~/.bashrc and export it in the current SHELL.
 Run:
 ```bash
-    cd ${FASAS_HOME_FOLDER}
-    bash dep/create_conda_env.sh
+    cd /PATH/TO/FASASHome/
+    bash ./add_env.sh
 ```
 
-3. To assemble paired-end reads with longer read length, you have to re-compile IDBA_ud from the source as follows:
-    - Modify the constant "kMaxShortSequence" from 128 to 157 (or more) in /src/sequence/short_sequence.h
-    - configure & make!
+3. 16S-FASAS requires some Perl modules and a conda environment, the installation script has been placed in the 'dep' directory. The installation process is very simple, just execute 'bash dep/create_conda_env.sh' and make a selection as prompted. The script will output 'done' at the end when the script runs successfully.
+Run:
+```bash
+   bash dep/create_conda_env.sh
+```
 
+4. To assemble paired-end reads with longer read length, you have to re-compile IDBA_ud from the source as follows. Modify the constant "kMaxShortSequence" from 128 to 157 (or more) in /src/sequence/short_sequence.h:
+
+**before:**
+ ```
+    102     static const uint32_t kMaxShortSequence = 128;  
+ ```
+**after:**
+```
+    102     static const uint32_t kMaxShortSequence = 157;
+```
+```bash
+    cd /PATH/TO/idba/idba-master
+    configure & make!
+```
+ 
 ## Usage
 All parameters are specified in the analyzer configuration file.
 ```bash
