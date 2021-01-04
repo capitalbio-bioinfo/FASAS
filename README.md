@@ -2,14 +2,14 @@
 
 ## Introduction
 16S-FASAS is a full-length 16S amplicon sequencing data analysis system which contains collections of modules such as data quality control, sequence demultiplexing, parallel assembly, taxonomy annotation and so on. 
-![Overall workflow of 16S-FASAS](https://github.com/zhangke-cs/FASAS/blob/master/data/project_png/figure1.jpg)
+![Overall workflow of 16S-FASAS](https://github.com/capitalbio-bioinfo/FASAS/blob/master/data/project_png/figure1.jpg)
 
 ## Installtion
 1. Clone the repository to your local path. 
 Run:
 ```bash
     mkdir /PATH/TO/FASASHome/
-    git clone https://github.com/zhangke-cs/FASAS.git /PATH/TO/FASASHome/
+    git clone https://github.com/capitalbio-bioinfo/FASAS.git /PATH/TO/FASASHome/
 ```
 2. An environment variable FASASHome is defined in 16S-FASAS. Run 'bash add_env.sh' or 'source add.env.sh' to write the FASASHome variable to ~/.bashrc and export it in the current SHELL.
 Run:
