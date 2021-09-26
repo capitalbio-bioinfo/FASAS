@@ -1,7 +1,7 @@
-# 16S-FASAS: 16S rRNA full-Length Amplicon Sequencing Analysis System
+# 16S-FASAS: 16S rRNA full-Length Amplicon Sequencing Analysis Software
 
 ## Introduction
-16S-FASAS is a full-length 16S amplicon sequencing data analysis system which contains collections of modules such as data quality control, sequence demultiplexing, parallel assembly, taxonomy annotation and so on. 
+16S-FASAS is a full-length 16S amplicon sequencing data analysis software which contains collections of modules such as data quality control, sequence demultiplexing, parallel assembly, taxonomy annotation and so on. 
 ![Overall workflow of 16S-FASAS](https://github.com/capitalbio-bioinfo/FASAS/blob/master/data/project_png/figure1.jpg)
 
 ## Installtion
@@ -11,14 +11,14 @@ Run:
     mkdir /PATH/TO/FASASHome/
     git clone https://github.com/capitalbio-bioinfo/FASAS.git /PATH/TO/FASASHome/
 ```
-2. An environment variable FASASHome is defined in 16S-FASAS. Run 'bash add_env.sh' or 'source add.env.sh' to write the FASASHome variable to ~/.bashrc and export it in the current SHELL.
+2. An environment variable FASASHome is defined in 16S-FASAS. Run 'bash add_env.sh' or 'source add.env.sh' to add FASAS related environments variables to ~/.bashrc .
 Run:
 ```bash
     cd /PATH/TO/FASASHome/
     bash ./add_env.sh
 ```
 
-3. 16S-FASAS requires some Perl modules and a conda environment, the installation script has been placed in the 'dep' directory. The installation process is very simple, just execute 'bash dep/create_conda_env.sh' and make a selection as prompted. The script will output 'done' at the end when the script runs successfully.
+3. 16S-FASAS requires some Perl modules and setting one conda environment, the installation script has been placed in the 'dep' directory. The installation process is simple by execute 'bash dep/create_conda_env.sh' and make a selection as prompted. The script will output 'done' at the end when the script runs successfully.
 Run:
 ```bash
    bash dep/create_conda_env.sh
@@ -100,5 +100,5 @@ Run the following codes for test:
 
 ## Copy Right
 
-> CapitalBio Corporation Beijing  
+> CapitalBio Corporation
 > Biochip National Enginerring Research Center of Beijing
