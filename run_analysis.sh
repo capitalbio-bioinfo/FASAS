@@ -138,7 +138,8 @@ done
 echoinfo "Active Conda environment..."
 #source conda environment
 #maybe, you can also use conda activate
-conda activate ${QCondaENVName} 2>/dev/null || source activate ${QCondaENVName}
+ACTIVATE_PATH=$(conda info --base)'/bin/activate'
+conda activate ${QCondaENVName} 2>/dev/null || source ${ACTIVATE_PATH} ${QCondaENVName}
 #check conda environment
 NowCondaENV=$(conda info | grep -i 'active environment' | awk '{print $4}')
 if [[ ${NowCondaENV} =~ ${QCondaENVName} ]]; then
