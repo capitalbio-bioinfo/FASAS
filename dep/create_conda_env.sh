@@ -217,8 +217,10 @@ else
 fi
 
 echo "Finally, install a Perl module: Switch."
+unset PERL5LIB
 {
-    conda activate FASAS 2> /dev/null || source activate FASAS 2> /dev/null
+    ACTIVATE_PATH=$(conda info --base)'/bin/activate'
+    conda activate FASAS 2> /dev/null || source ${ACTIVATE_PATH} FASAS 2> /dev/null
     TrueInstallAdd=$(perl -e 'foreach my $every_ (@INC){ if($every_ =~ /conda/){ print $every_ and last; } }')
     NowTime=$(date +'%Y%m%d%H%M%S')
     UserTEMPFolder=${USER}'-cpanm-'${NowTime}
@@ -236,6 +238,6 @@ echo "Finally, install a Perl module: Switch."
     echo "Warning, the installation of the Switch module failed, please install it in the FASAS environment yourself!"
 }
 
-echo "Note One: Before using 16S-FASAS, please confirm that the conda program is in the PATH environment variable."
+echo "Note One: Before using FASAS, please confirm that the conda program is in the PATH environment variable."
 echo "Note Two: If the Perl module fails, note the location of the failed module."
 echo "Done."
