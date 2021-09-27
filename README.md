@@ -1,7 +1,7 @@
-# 16S-FASAS: 16S rRNA full-Length Amplicon Sequencing Analysis System
+# 16S-FASAS: 16S rRNA full-Length Amplicon Sequencing Analysis Software
 
 ## Introduction
-16S-FASAS is a full-length 16S amplicon sequencing data analysis system which contains collections of modules such as data quality control, sequence demultiplexing, parallel assembly, taxonomy annotation and so on. 
+16S-FASAS is a full-length 16S amplicon sequencing data analysis software which contains collections of modules such as data quality control, sequence demultiplexing, parallel assembly, taxonomy annotation and so on. 
 ![Overall workflow of 16S-FASAS](https://github.com/capitalbio-bioinfo/FASAS/blob/master/data/project_png/figure1.jpg)
 
 ## Installtion
@@ -11,20 +11,27 @@ Run:
     mkdir /PATH/TO/FASASHome/
     git clone https://github.com/capitalbio-bioinfo/FASAS.git /PATH/TO/FASASHome/
 ```
-2. An environment variable FASASHome is defined in 16S-FASAS. Run 'bash add_env.sh' or 'source add.env.sh' to write the FASASHome variable to ~/.bashrc and export it in the current SHELL.
+2. An environment variable FASASHome is defined in 16S-FASAS. Run 'bash add_env.sh' or 'source add.env.sh' to add FASAS related environment's variables to ~/.bashrc .
 Run:
 ```bash
     cd /PATH/TO/FASASHome/
     bash ./add_env.sh
 ```
 
-3. 16S-FASAS requires some Perl modules and a conda environment, the installation script has been placed in the 'dep' directory. The installation process is very simple, just execute 'bash dep/create_conda_env.sh' and make a selection as prompted. The script will output 'done' at the end when the script runs successfully.
+3. 16S-FASAS requires some Perl modules and setting one conda environment, the installation script has been placed in the 'dep' directory. The installation process is simple by execute 'bash dep/create_conda_env.sh' and make a selection as prompted. The script will output 'done' at the end when the script runs successfully.
 Run:
 ```bash
    bash dep/create_conda_env.sh
+   conda activate FASAS
 ```
 
 4. To assemble paired-end reads with longer read length, you have to re-compile IDBA_ud from the source as follows. Modify the constant "kMaxShortSequence" from 128 to 157 (or more) in /src/sequence/short_sequence.h:
+
+```bash
+    git clone  git@github.com:loneknightpy/idba.git ./idba
+    cd ./idba
+    vim ./src/sequence/short_sequence.h
+```
 
 **before:**
  ```
@@ -35,10 +42,11 @@ Run:
     102     static const uint32_t kMaxShortSequence = 157;
 ```
 ```bash
-    cd /PATH/TO/idba/idba-master
-    configure & make!
+    cd /PATH/TO/idba/
+    ./build.sh
 ```
- 
+Add `PATH=$PATH:<path to>/idba/bin` to `~/.bashrc` and resource.
+
 ## Usage
 All parameters are specified in the analyzer configuration file.
 ```bash
@@ -65,6 +73,7 @@ ContigLength            int        Minmum contig length                      [12
 ## Test
 Run the following codes for test:
 ```bash
+    export FASASHome='<PATH to FASAS>'
     #build test database
     bash ${FASASHome}/data/example_data/database/build_database.sh ${FASASHome}/data/example_data/database/mini_fulllength.fasta
     #create config file
@@ -100,5 +109,5 @@ Run the following codes for test:
 
 ## Copy Right
 
-> CapitalBio Corporation Beijing  
+> CapitalBio Corporation
 > Biochip National Enginerring Research Center of Beijing
