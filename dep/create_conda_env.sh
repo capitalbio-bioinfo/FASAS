@@ -207,7 +207,7 @@ else
     fi
     {
         echo "Execute: conda create -n FASAS command ......"
-        sudo ${CondaPATH} create --yes -n FASAS trimmomatic cutadapt=2.3 r-ggplot2 pigz=2.3.4 bowtie2=2.3.5 r-optparse r-pheatmap perl=5.26.2 perl-file-which perl-parallel-forkmanager
+        sudo ${CondaPATH} create --yes -n FASAS trimmomatic cutadapt=2.3 r-ggplot2 pigz=2.3.4 bowtie2=2.3.5 tbb=2020.2 r-optparse r-pheatmap perl=5.26.2 perl-file-which perl-parallel-forkmanager
         echo "Execute: conda install --no-deps -n FASAS blast ......"
         sudo ${CondaPATH} install --yes --no-deps -n FASAS blast
     } || {
@@ -217,6 +217,7 @@ else
 fi
 
 echo "Finally, install a Perl module: Switch."
+unset PERL5LIB
 {
     ACTIVATE_PATH=$(conda info --base)'/bin/activate'
     conda activate FASAS 2> /dev/null || source ${ACTIVATE_PATH} FASAS 2> /dev/null
@@ -237,6 +238,6 @@ echo "Finally, install a Perl module: Switch."
     echo "Warning, the installation of the Switch module failed, please install it in the FASAS environment yourself!"
 }
 
-echo "Note One: Before using 16S-FASAS, please confirm that the conda program is in the PATH environment variable."
+echo "Note One: Before using FASAS, please confirm that the conda program is in the PATH environment variable."
 echo "Note Two: If the Perl module fails, note the location of the failed module."
 echo "Done."
