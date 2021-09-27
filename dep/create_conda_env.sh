@@ -218,7 +218,8 @@ fi
 
 echo "Finally, install a Perl module: Switch."
 {
-    conda activate FASAS 2> /dev/null || source activate FASAS 2> /dev/null
+    ACTIVATE_PATH=$(conda info --base)'/bin/activate'
+    conda activate FASAS 2> /dev/null || source ${ACTIVATE_PATH} FASAS 2> /dev/null
     TrueInstallAdd=$(perl -e 'foreach my $every_ (@INC){ if($every_ =~ /conda/){ print $every_ and last; } }')
     NowTime=$(date +'%Y%m%d%H%M%S')
     UserTEMPFolder=${USER}'-cpanm-'${NowTime}

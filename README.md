@@ -11,7 +11,7 @@ Run:
     mkdir /PATH/TO/FASASHome/
     git clone https://github.com/capitalbio-bioinfo/FASAS.git /PATH/TO/FASASHome/
 ```
-2. An environment variable FASASHome is defined in 16S-FASAS. Run 'bash add_env.sh' or 'source add.env.sh' to add FASAS related environments variables to ~/.bashrc .
+2. An environment variable FASASHome is defined in 16S-FASAS. Run 'bash add_env.sh' or 'source add.env.sh' to add FASAS related environment's variables to ~/.bashrc .
 Run:
 ```bash
     cd /PATH/TO/FASASHome/
@@ -22,9 +22,16 @@ Run:
 Run:
 ```bash
    bash dep/create_conda_env.sh
+   conda activate FASAS
 ```
 
 4. To assemble paired-end reads with longer read length, you have to re-compile IDBA_ud from the source as follows. Modify the constant "kMaxShortSequence" from 128 to 157 (or more) in /src/sequence/short_sequence.h:
+
+```bash
+    git clone  git@github.com:loneknightpy/idba.git ./idba
+    cd ./idba
+    vim ./src/sequence/short_sequence.h
+```
 
 **before:**
  ```
@@ -35,10 +42,11 @@ Run:
     102     static const uint32_t kMaxShortSequence = 157;
 ```
 ```bash
-    cd /PATH/TO/idba/idba-master
-    configure & make!
+    cd /PATH/TO/idba/
+    ./build.sh
 ```
- 
+Add `PATH=$PATH:<path to>/idba/bin` to `~/.bashrc` and resource.
+
 ## Usage
 All parameters are specified in the analyzer configuration file.
 ```bash
@@ -65,6 +73,7 @@ ContigLength            int        Minmum contig length                      [12
 ## Test
 Run the following codes for test:
 ```bash
+    export FASASHome='<PATH to FASAS>'
     #build test database
     bash ${FASASHome}/data/example_data/database/build_database.sh ${FASASHome}/data/example_data/database/mini_fulllength.fasta
     #create config file
