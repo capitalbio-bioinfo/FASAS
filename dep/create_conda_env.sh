@@ -207,7 +207,7 @@ else
     fi
     {
         echo "Execute: conda create -n FASAS command ......"
-        sudo ${CondaPATH} create --yes -n FASAS trimmomatic cutadapt=2.3 r-ggplot2 pigz=2.3.4 bowtie2=2.3.5 r-optparse r-pheatmap perl=5.26.2 perl-file-which perl-parallel-forkmanager
+        sudo ${CondaPATH} create --yes -n FASAS trimmomatic cutadapt=2.3 r-ggplot2 pigz=2.3.4 bowtie2=2.3.5 tbb=2020.2 r-optparse r-pheatmap perl=5.26.2 perl-file-which perl-parallel-forkmanager
         echo "Execute: conda install --no-deps -n FASAS blast ......"
         sudo ${CondaPATH} install --yes --no-deps -n FASAS blast
     } || {
